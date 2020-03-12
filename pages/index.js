@@ -1,11 +1,10 @@
 
 import Link from 'next/link';
-import Header from '../components/Header';
+import Layout from '../components/Layout';
 
 export default function Index() {
   return (
-    <div>
-      <Header />
+    <Layout>
       <p>Hello Next.js</p>
       <ul>
         <li>
@@ -14,6 +13,6 @@ export default function Index() {
           </Link>
         </li>
       </ul>
-    </div>
+    </Layout>
   );
 }
