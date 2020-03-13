@@ -1,28 +1,34 @@
 
 import Link from 'next/link';
+import fetch from 'isomorphic-unfetch';
 import Layout from '../components/Layout';
 
-const PostLink = props => (
-  <li>
-    <Link href="/p/[id]" as={`/p/${props.id}`}>
-      <a>{props.id}</a>
-    </Link>
-  </li>
+const showTitle = 'Batman';
+
+const Index = props => (
+  <Layout>
+    <h1>{showTitle} Shows</h1>
+    <ul>
+      {props.shows.map(show => (
+        <li key={show.id}>
+          <Link href="/p/[id]" as={`/p/${show.id}`}>
+            <a>{show.name}</a>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </Layout>
 );
 
-const titles = [
-  'I am a post',
-  'I am a different post',
-  'And look! Another!',
-];
+Index.getInitialProps = async function() {
+  const res = await fetch(`https://api.tvmaze.com/search/shows?q=${showTitle}`);
+  const data = await res.json();
 
-export default function Index() {
-  return (
-    <Layout>
-      <h1>A list of posts!</h1>
-      <ul>
-        { titles.map((title, i) => (<PostLink id={title} key={i} />)) }
-      </ul>
-    </Layout>
-  );
-}
+  console.log(`Show data fetched. Count: ${data.length}`);
+
+  return {
+    shows: data.map(entry => entry.show)
+  };
+};
+
+export default Index;
