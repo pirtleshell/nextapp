@@ -12,3 +12,9 @@ I'm putting it on Github in case I want to reference it in the future.
 # :rainbow: :man_dancing:
 
 Love, Pirtle
+
+Update:
+The tutorial quickly became a Zeit advertisement for their services and packages :man_shrugging:
+I finished it out but didn't make further app updates. However...I did get all the points
+
+![](all-the-points.png)
